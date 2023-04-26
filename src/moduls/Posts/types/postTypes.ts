@@ -10,3 +10,12 @@ export interface IPostState {
   isLoading: boolean;
   error: string;
 }
+
+interface CustomElements extends HTMLFormControlsCollection {
+  title: HTMLInputElement;
+  body: HTMLInputElement;
+}
+
+export interface CustomForm extends HTMLFormElement {
+  readonly elements: CustomElements;
+}
