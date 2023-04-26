@@ -1,5 +1,6 @@
 import { FC } from 'react';
 import { Outlet } from 'react-router-dom';
+import Footer from '../components/Footer';
 import NavBar from '../components/NavBar';
 
 const Layout: FC = () => {
@@ -11,7 +12,9 @@ const Layout: FC = () => {
       <main className="flex-grow">
         <Outlet />
       </main>
-      <footer>footer</footer>
+      <footer className="bg-slate-700 text-white">
+        <Footer />
+      </footer>
     </div>
   );
 };

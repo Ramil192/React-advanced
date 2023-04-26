@@ -4,7 +4,7 @@ import MainRout from './pages/Rout/MainRout';
 function App() {
   return (
     <AuthProvider>
-      <MainRout />;
+      <MainRout />
     </AuthProvider>
   );
 }
