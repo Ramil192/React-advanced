@@ -30,5 +30,10 @@ export const postApi = createApi({
         url: `/posts/${id}`,
       }),
     }),
+    fetchPostComments: build.query<IComments[], string>({
+      query: (id: string) => ({
+        url: `/posts/${id}/comments`,
+      }),
+    }),
   }),
 });

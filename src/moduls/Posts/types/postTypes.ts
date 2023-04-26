@@ -26,3 +26,9 @@ export interface IFilter {
 }
 
 export type sort = 'title' | 'body' | '';
+
+export interface IComments {
+  id: number;
+  email: string;
+  body: string;
+}

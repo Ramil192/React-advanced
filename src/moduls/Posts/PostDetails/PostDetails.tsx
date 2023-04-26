@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import Error from '../../../components/Error';
 import Loader from '../../../components/Loader';
 import { postApi } from '../store/service/servicePost';
+import PostComments from './PostComments';
 
 const PostDetails: FC = () => {
   const { id } = useParams();
@@ -18,12 +19,13 @@ const PostDetails: FC = () => {
       {isLoadingPost && <Loader />}
       {isErrorPost && <Error />}
       {post && (
-        <div>
-          <h1 className="text-3xl font-medium">Вы открыли пост с ID: {id}</h1>
-          <h6 className="font-medium">1. {post.title}</h6>
+        <>
+          <p className="text-3xl font-medium">Вы открыли пост с ID: {id}</p>
+          <h1 className="font-medium">1. {post.title}</h1>
           <p>{post.body} </p>
-        </div>
+        </>
       )}
+      <PostComments />
     </div>
   );
 };
