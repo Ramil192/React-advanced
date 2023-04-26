@@ -1,5 +1,6 @@
 import { FC, useEffect, useState } from 'react';
 import CustomButton from '../../UI/CustomButton';
+import NavigationPages from '../../components/NavigationPages';
 import Loader from './../../components/Loader';
 import PostCreate from './PostCreate';
 import PostItem from './PostItem';
@@ -9,6 +10,7 @@ import { useAppDispatch, useAppSelector } from './store/hooks/redux';
 import { postsSlice } from './store/reducers/PostSlice';
 import { postApi } from './store/service/servicePost';
 import { IFilter, sort } from './types/postTypes';
+import { getPageCountArray } from './utils/pages';
 
 const Posts: FC<{ title: string }> = ({ title }) => {
   const [isVisible, setIsVisible] = useState(true);
@@ -17,16 +19,17 @@ const Posts: FC<{ title: string }> = ({ title }) => {
     sort: '',
   });
 
-  const { posts } = useAppSelector((state) => state.postsReducer);
+  const { posts, limit, currentPage } = useAppSelector(
+    (state) => state.postsReducer
+  );
 
   const dispatch = useAppDispatch();
-  const { addPostApi } = postsSlice.actions;
+  const { addPostApi, updatePage } = postsSlice.actions;
 
-  const {
-    data: postsApi,
-    isLoading,
-    isError,
-  } = postApi.useFetchAllPostsQuery(10);
+  const { data, isLoading, isError } = postApi.useFetchAllPostsQuery({
+    limit,
+    page: currentPage,
+  });
 
   const filteredAndSearchPosts = useFilterPosts(filter, posts);
 
@@ -38,26 +41,35 @@ const Posts: FC<{ title: string }> = ({ title }) => {
     setFilter((prev) => ({ ...prev, query: e.target.value }));
   };
 
-  const handlerChangeVisible = () => {
+  const changeVisible = () => {
     setIsVisible((prevValue) => !prevValue);
   };
 
+  const changePage = (page: number) => {
+    dispatch(updatePage(page));
+  };
+
   useEffect(() => {
-    if (postsApi) {
-      dispatch(addPostApi(postsApi));
+    if (data) {
+      dispatch(addPostApi(data.postsApi));
     }
-  }, [postsApi]);
+  }, [data]);
+
+  const pages = getPageCountArray(data ? data?.totalCount : 1, limit);
 
   return (
     <div className="max-w-lg mx-auto pt-2">
-      <CustomButton onClick={handlerChangeVisible}>Создание поста</CustomButton>
+      <CustomButton onClick={changeVisible}>Создание поста</CustomButton>
+      
       <PostSort
         querySort={filter.query}
         changeSort={changeSort}
         selectedSort={filter.sort}
         changeQuery={changeQuery}
       />
-      <PostCreate isVisible={isVisible} changeVisible={handlerChangeVisible} />
+
+      <PostCreate isVisible={isVisible} changeVisible={changeVisible} />
+
       <h1 className="text-3xl font-medium text-center pb-2">{title}</h1>
       {filteredAndSearchPosts.length < 1 && <strong>Постов нету</strong>}
       {isLoading && <Loader />}
@@ -66,6 +78,12 @@ const Posts: FC<{ title: string }> = ({ title }) => {
         filteredAndSearchPosts.map((post, index) => (
           <PostItem post={post} key={post.id} currentPoints={index + 1} />
         ))}
+
+      <NavigationPages
+        pages={pages}
+        currentPage={currentPage}
+        changePage={changePage}
+      />
     </div>
   );
 };

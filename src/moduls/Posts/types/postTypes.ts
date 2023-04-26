@@ -7,6 +7,8 @@ export interface IPost {
 
 export interface IPostState {
   posts: IPost[];
+  limit: number;
+  currentPage: number;
 }
 
 interface CustomElements extends HTMLFormControlsCollection {

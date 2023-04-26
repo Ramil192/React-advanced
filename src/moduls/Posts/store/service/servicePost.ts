@@ -7,13 +7,23 @@ export const postApi = createApi({
     baseUrl: 'https://jsonplaceholder.typicode.com',
   }),
   endpoints: (build) => ({
-    fetchAllPosts: build.query<IPost[], number>({
-      query: (limit: number = 10) => ({
+    fetchAllPosts: build.query<
+      { postsApi: IPost[]; totalCount: number },
+      { limit: number; page: number }
+    >({
+      query: ({ limit = 5, page = 1 }) => ({
         url: '/posts',
         params: {
+          _page: page,
           _limit: limit,
         },
       }),
+      transformResponse: (postsApi: IPost[], meta) => {
+        return {
+          postsApi,
+          totalCount: Number(meta!.response!.headers.get('X-Total-Count')),
+        };
+      },
     }),
   }),
 });
