@@ -8,6 +8,7 @@ export const privetRouts = [
   { path: 'posts', element: <MainPost /> },
   { path: 'posts/:id', element: <MainPostDetails /> },
   { path: 'about', element: <About /> },
+  { path: '/', element: <Navigate to="about" /> },
   { path: '*', element: <Navigate to="about" /> },
 ];
 export const publicRouts = [

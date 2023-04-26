@@ -1,5 +1,5 @@
 import { FC, useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { AuthContext } from '../context/AuthProvider';
 
 const NavBar: FC = () => {
@@ -16,8 +16,8 @@ const NavBar: FC = () => {
         <button onClick={signOut}>Выйти</button>
       </div>
 
-      <Link to={'/about'}>About</Link>
-      <Link to={'/posts'}>Posts</Link>
+      <NavLink to={'/about'}>About</NavLink>
+      <NavLink to={'/posts'}>Posts</NavLink>
     </div>
   );
 };
