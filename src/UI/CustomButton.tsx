@@ -8,7 +8,7 @@ interface IButton extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 const CustomButton: FC<IButton> = ({ children, ...props }) => {
   return (
     <button
-      className="px-1 py-2 text-sm border border-green-600 text-green-600"
+      className="px-1 py-2 text-sm border border-green-600 text-green-600 h-max"
       {...props}
     >
       {children}

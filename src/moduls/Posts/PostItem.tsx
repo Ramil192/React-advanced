@@ -16,7 +16,7 @@ const PostItem: FC<{
   };
 
   return (
-    <div className="mb-2 p-2 flex justify-between border-2 border-green-600">
+    <div className="mb-2 p-2 flex justify-between border-2 border-green-600 items-center">
       <div>
         <h6 className="font-medium">
           {currentPoints}. {post.title}

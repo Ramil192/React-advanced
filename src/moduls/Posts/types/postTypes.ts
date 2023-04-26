@@ -7,8 +7,6 @@ export interface IPost {
 
 export interface IPostState {
   posts: IPost[];
-  isLoading: boolean;
-  error: string;
 }
 
 interface CustomElements extends HTMLFormControlsCollection {
