@@ -19,3 +19,10 @@ interface CustomElements extends HTMLFormControlsCollection {
 export interface CustomForm extends HTMLFormElement {
   readonly elements: CustomElements;
 }
+
+export interface IFilter {
+  query: string;
+  sort: sort;
+}
+
+export type sort = 'title' | 'body' | '';
