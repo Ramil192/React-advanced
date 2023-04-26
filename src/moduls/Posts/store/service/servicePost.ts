@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { IPost } from '../../types/postTypes';
+import { IComments, IPost } from '../../types/postTypes';
 
 export const postApi = createApi({
   reducerPath: 'postApi',
@@ -24,6 +24,11 @@ export const postApi = createApi({
           totalCount: Number(meta!.response!.headers.get('X-Total-Count')),
         };
       },
+    }),
+    fetchPost: build.query<IPost, string>({
+      query: (id: string) => ({
+        url: `/posts/${id}`,
+      }),
     }),
   }),
 });

@@ -1,5 +1,6 @@
 import { FC, useEffect, useState } from 'react';
 import CustomButton from '../../UI/CustomButton';
+import Error from '../../components/Error';
 import NavigationPages from '../../components/NavigationPages';
 import Loader from './../../components/Loader';
 import PostCreate from './PostCreate';
@@ -73,7 +74,7 @@ const Posts: FC = () => {
       <h1 className="text-3xl font-medium text-center pb-2">Список Постов</h1>
       {filteredAndSearchPosts.length < 1 && <strong>Постов нету</strong>}
       {isLoading && <Loader />}
-      {isError && <h1>Произошла ошибка, попробуйте позже </h1>}
+      {isError && <Error />}
       {filteredAndSearchPosts &&
         filteredAndSearchPosts.map((post, index) => (
           <PostItem post={post} key={post.id} currentPoints={index + 1} />

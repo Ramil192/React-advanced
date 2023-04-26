@@ -1,4 +1,5 @@
 import { FC } from 'react';
+import { Link } from 'react-router-dom';
 import CustomButton from '../../UI/CustomButton';
 import { useAppDispatch } from './store/hooks/redux';
 import { postsSlice } from './store/reducers/PostSlice';
@@ -19,7 +20,7 @@ const PostItem: FC<{
     <div className="mb-2 p-2 flex justify-between border-2 border-green-600 items-center">
       <div>
         <h6 className="font-medium">
-          {currentPoints}. {post.title}
+          {currentPoints}. <Link to={`/posts/${post.id}`}>{post.title}</Link>
         </h6>
         <p>{post.body} </p>
       </div>
