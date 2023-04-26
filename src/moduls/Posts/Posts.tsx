@@ -12,7 +12,7 @@ import { postApi } from './store/service/servicePost';
 import { IFilter, sort } from './types/postTypes';
 import { getPageCountArray } from './utils/pages';
 
-const Posts: FC<{ title: string }> = ({ title }) => {
+const Posts: FC = () => {
   const [isVisible, setIsVisible] = useState(true);
   const [filter, setFilter] = useState<IFilter>({
     query: '',
@@ -60,7 +60,7 @@ const Posts: FC<{ title: string }> = ({ title }) => {
   return (
     <div className="max-w-lg mx-auto pt-2">
       <CustomButton onClick={changeVisible}>Создание поста</CustomButton>
-      
+
       <PostSort
         querySort={filter.query}
         changeSort={changeSort}
@@ -70,7 +70,7 @@ const Posts: FC<{ title: string }> = ({ title }) => {
 
       <PostCreate isVisible={isVisible} changeVisible={changeVisible} />
 
-      <h1 className="text-3xl font-medium text-center pb-2">{title}</h1>
+      <h1 className="text-3xl font-medium text-center pb-2">Список Постов</h1>
       {filteredAndSearchPosts.length < 1 && <strong>Постов нету</strong>}
       {isLoading && <Loader />}
       {isError && <h1>Произошла ошибка, попробуйте позже </h1>}
