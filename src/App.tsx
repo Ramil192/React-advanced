@@ -1,4 +1,5 @@
 import { Provider } from 'react-redux';
+import { Route, Routes } from 'react-router-dom';
 import Posts from './moduls/Posts/Posts';
 import { setupStore } from './moduls/Posts/store/store';
 
@@ -7,7 +8,9 @@ function App() {
   return (
     <div className="">
       <Provider store={storePosts}>
-        <Posts title="Список Постов" />
+        <Routes>
+          <Route path="/" element={<Posts title="Список Постов"/>} />
+        </Routes>
       </Provider>
     </div>
   );
