@@ -1,7 +1,12 @@
+import AuthProvider from './context/AuthProvider';
 import MainRout from './pages/Rout/MainRout';
 
 function App() {
-  return <MainRout />;
+  return (
+    <AuthProvider>
+      <MainRout />;
+    </AuthProvider>
+  );
 }
 
 export default App;
