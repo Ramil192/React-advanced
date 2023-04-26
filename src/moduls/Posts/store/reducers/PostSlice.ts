@@ -5,18 +5,18 @@ const initialState: IPostState = {
   posts: [
     {
       id: 1,
-      title: 'Javascript',
-      body: 'Description',
+      title: 'a',
+      body: 'aaa',
     },
     {
       id: 2,
-      title: 'React',
-      body: 'Description',
+      title: 'aa',
+      body: 'aa',
     },
     {
       id: 3,
-      title: 'TypeScript',
-      body: 'Description',
+      title: 'aaa',
+      body: 'a',
     },
   ],
   isLoading: false,
