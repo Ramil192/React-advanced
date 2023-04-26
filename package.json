@@ -1,4 +1,5 @@
 {
+  "homepage":"http://Ramil192.github.io/react-advanced",
   "name": "react-advanced",
   "version": "0.1.0",
   "private": true,
@@ -23,12 +24,12 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "lint": "eslint src --ext .ts",
     "lint:fix": "npm run lint -- --fix",
-    "prettier":"npx prettier --write src/",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "prettier": "npx prettier --write src/",
+    "build": "react-scripts build"
   },
   "eslintConfig": {
     "extends": [
@@ -49,6 +50,7 @@
     ]
   },
   "devDependencies": {
+    "gh-pages": "^5.0.0",
     "tailwindcss": "^3.3.1"
   }
 }
