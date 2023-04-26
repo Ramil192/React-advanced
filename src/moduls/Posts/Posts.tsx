@@ -11,12 +11,13 @@ const Posts: FC<{ title: string }> = ({ title }) => {
   const handlerChangeVisible = () => {
     setIsVisible((prevValue) => !prevValue);
   };
-
+ 
   return (
     <div className="max-w-lg mx-auto pt-2">
       <CustomButton onClick={handlerChangeVisible}>Создание поста</CustomButton>
       <PostCreate isVisible={isVisible} changeVisible={handlerChangeVisible} />
       <h1 className="text-3xl font-medium text-center pb-2">{title}</h1>
+      {posts.length < 1 && <strong>Постов нету</strong>}
       {posts.map((post, index) => (
         <PostItem post={post} key={post.id} currentPoints={index + 1} />
       ))}
