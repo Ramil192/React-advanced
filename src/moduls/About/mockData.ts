@@ -23,4 +23,5 @@ export const mockAbout = [
       'создание собственных хуков',
     ],
   },
+  { title: 'Git', lists: ['https://github.com/Ramil192/react-advanced'] },
 ];
